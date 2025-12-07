@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Streets Atlanta - Safer Micromobility for Everyone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 15px 35px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-primary {
+            background: #ffd700;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #667eea;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .problem-section {
+            background: #f8f9fa;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: 700;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            color: #666;
+        }
+
+        .poster-section {
+            background: white;
+            text-align: center;
+        }
+
+        .poster-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .poster-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .solution-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .solution-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .solution-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        .solution-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .solution-details {
+            list-style: none;
+            padding: 0;
+        }
+
+        .solution-details li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+        }
+
+        .solution-details li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .get-involved {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .get-involved .section-title {
+            color: white;
+        }
+
+        .get-involved .section-subtitle {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .action-card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .action-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .social-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: #ffd700;
+            color: #333;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .social-link:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .solutions-grid,
+            .stats-grid,
+            .action-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="container">
+            <h1>Making Atlanta's Streets Safe for Everyone</h1>
+            <p>E-scooters and e-bikes promise sustainable mobility, but rising injuries and sidewalk conflicts threaten pedestrian safety. It's time for Smart Streets.</p>
+            <div class="cta-buttons">
+                <a href="#solutions" class="cta-button cta-primary">See Our Plan</a>
+                <a href="#get-involved" class="cta-button cta-secondary">Get Involved</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="container">
+            <h2 class="section-title">The Problem We're Facing</h2>
+            <p class="section-subtitle">Micromobility is exploding in popularity, but safety hasn't kept pace. Atlanta's infrastructure and policies are struggling to protect riders and pedestrians alike.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">373</div>
+                    <div class="stat-label">Deaths from micromobility devices (2017-2022)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">209K</div>
+                    <div class="stat-label">Emergency department visits (2017-2023)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">130M</div>
+                    <div class="stat-label">E-scooter trips in 2023 alone</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">30%</div>
+                    <div class="stat-label">Increase in usage from previous year</div>
+                </div>
+            </div>
+
+            <p style="margin-top: 40px; text-align: center; font-size: 1.1em; max-width: 800px; margin-left: auto; margin-right: auto; color: #555;">
+                Research shows that sidewalk riding doubles injury risk, yet riders feel unsafe on roads without protected lanes. Meanwhile, scooters cluttering sidewalks create hazards for pedestrians, especially those with disabilities. Without proper infrastructure, education, and enforcement, these problems will only worsen.
+            </p>
+        </div>
+    </section>
+
+    <!-- Poster Section -->
+    <section class="poster-section">
+        <div class="container">
+            <h2 class="section-title">Our Campaign</h2>
+            <p class="section-subtitle">Mind the Micromobility - Equity on the Roads at All Costs</p>
+            <div class="poster-container">
+                <img src="poster.png" alt="Mind the Micromobility Poster" style="width: 100%; height: auto;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions">
+        <div class="container">
+            <h2 class="section-title">Our Three-Part Solution</h2>
+            <p class="section-subtitle">Smart Streets combines technology, infrastructure, and education to create safer streets for everyone</p>
+            
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <div class="solution-icon">📍</div>
+                    <h3>Geofenced Safety Zones</h3>
+                    <p>Using GPS technology to automatically slow scooters in high-risk areas and establish no-ride zones around pedestrian hotspots.</p>
+                    <ul class="solution-details">
+                        <li>Speed caps of 10 mph in dense areas</li>
+                        <li>Expanded no-ride zones on campuses and plazas</li>
+                        <li>Smart ordinances with escalating fines</li>
+                        <li>Partnership with Lime, Bird, and APD</li>
+                    </ul>
+                    <p style="margin-top: 20px; font-weight: 600;">Budget: $1,850,000 | Timeline: 6 months</p>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">🛣️</div>
+                    <h3>Dedicated Infrastructure</h3>
+                    <p>Building the physical infrastructure Atlanta needs: protected lanes, designated parking corrals, and clear signage.</p>
+                    <ul class="solution-details">
+                        <li>Protected micromobility lanes on key corridors</li>
+                        <li>Designated parking corrals with GPS guidance</li>
+                        <li>Enhanced signage at crossings and pedestrian zones</li>
+                        <li>Focus on Midtown, Downtown, and BeltLine</li>
+                    </ul>
+                    <p style="margin-top: 20px; font-weight: 600;">Budget: $2,600,000 | Timeline: 3-4 months</p>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">📚</div>
+                    <h3>"Share the Path" Campaign</h3>
+                    <p>A comprehensive public education initiative to build awareness and accountability among all road users.</p>
+                    <ul class="solution-details">
+                        <li>Safety infographics across bus shelters and MARTA</li>
+                        <li>Micromobility Ambassador program</li>
+                        <li>Pop-up safety demonstrations at hotspots</li>
+                        <li>Behavioral surveys to measure impact</li>
+                    </ul>
+                    <p style="margin-top: 20px; font-weight: 600;">Budget: $950,000 | Timeline: 4 months</p>
+                </div>
+            </div>
+
+            <p style="margin-top: 60px; text-align: center; font-size: 1.2em; max-width: 900px; margin-left: auto; margin-right: auto; color: #555;">
+                Our approach is evidence-based, addressing all four factors that impact micromobility safety: human behavior, device features, policy decisions, and road infrastructure. By tackling these comprehensively, we can reduce injuries while preserving the environmental and accessibility benefits of micromobility.
+            </p>
+        </div>
+    </section>
+
+    <!-- Get Involved Section -->
+    <section id="get-involved" class="get-involved">
+        <div class="container">
+            <h2 class="section-title">Get Involved</h2>
+            <p class="section-subtitle">Everyone has a role to play in making Atlanta's streets safer</p>
+            
+            <div class="action-grid">
+                <div class="action-card">
+                    <h3>🗣️ Spread Awareness</h3>
+                    <p>Share our campaign on social media and talk to friends about safe riding practices. Public support drives policy change.</p>
+                </div>
+
+                <div class="action-card">
+                    <h3>✅ Follow Safety Rules</h3>
+                    <p>Ride in bike lanes, yield to pedestrians, park responsibly, and wear a helmet. Be part of the solution.</p>
+                </div>
+
+                <div class="action-card">
+                    <h3>📢 Report Issues</h3>
+                    <p>Contact Atlanta Police and transportation officials when you see dangerous riding or improperly parked scooters.</p>
+                </div>
+
+                <div class="action-card">
+                    <h3>📝 Support Legislation</h3>
+                    <p>Contact Atlanta Department of Transportation and your city council representatives to support Smart Streets initiatives.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 50px;">
+                <a href="https://instagram.com/ride_right" class="social-link" target="_blank">Follow us @RIDE_RIGHT on Instagram</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p><strong>Smart Streets Initiative</strong></p>
+            <p>A project by Jerry Song and Vikas Malepati</p>
+            <p>Georgia Institute of Technology | October 2025</p>
+            <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.8;">
+                Proposal submitted to Atlanta Department of Transportation
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
