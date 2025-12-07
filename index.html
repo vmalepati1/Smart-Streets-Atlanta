@@ -18,8 +18,7 @@
         }
 
         .hero {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.85) 0%, rgba(118, 75, 162, 0.85) 100%), 
-                        url('atlanta-background.jpg') center/cover no-repeat;
+            background: url('assets/atlanta-background.jpg') center/cover no-repeat;
             color: white;
             padding: 100px 20px 80px;
             text-align: center;
@@ -34,7 +33,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('atlanta-background.jpg') center/cover no-repeat;
+            background: url('assets/atlanta-background.jpg') center/cover no-repeat;
             filter: blur(3px);
             z-index: -1;
         }
@@ -46,13 +45,14 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.75) 0%, rgba(118, 75, 162, 0.75) 100%);
+            background: rgba(0, 0, 0, 0.4);
             z-index: 0;
         }
 
         .hero .container {
             position: relative;
             z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         }
 
         .hero h1 {
@@ -140,6 +140,7 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
             margin-top: 40px;
+            grid-auto-rows: 1fr;
         }
 
         .stat-card {
@@ -149,6 +150,9 @@
             text-align: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .stat-card:hover {
@@ -165,6 +169,67 @@
         .stat-label {
             font-size: 1.1em;
             color: #666;
+        }
+
+        /* Problem in Pictures gallery */
+        .problem-pictures {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .problem-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .problem-gallery img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            display: block;
+        }
+
+        @media (max-width: 900px) {
+            .problem-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            /* Make the third picture span the full row and center across the page */
+            .problem-gallery img:nth-child(3) {
+                grid-column: 1 / -1;
+                width: 60%;
+                margin-left: auto;
+                margin-right: auto;
+                justify-self: center;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .problem-gallery {
+                grid-template-columns: 1fr;
+            }
+            .problem-gallery img { height: 180px; }
+            /* For very small screens, make the third image slightly narrower and centered (full-row) */
+            .problem-gallery img:nth-child(3) {
+                grid-column: 1 / -1;
+                width: 80%;
+                margin-left: auto;
+                margin-right: auto;
+                justify-self: center;
+            }
+        }
+
+        /* Center the third solution card when layout collapses */
+        @media (max-width: 900px) {
+            .solutions-grid .solution-card:nth-child(3) {
+                grid-column: 1 / -1;
+                width: 60%;
+                margin-left: auto;
+                margin-right: auto;
+            }
         }
 
         .poster-section {
@@ -389,6 +454,104 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* View Data button */
+        .view-data-btn {
+            margin-top: 15px;
+            padding: 8px 14px;
+            background: transparent;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .view-data-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+        }
+
+        /* Ensure the view button sits at the bottom of the card */
+        .stat-card .view-data-btn {
+            margin-top: 12px;
+            align-self: center;
+        }
+
+        /* Group number + label so their spacing is consistent */
+        .stat-content {
+            text-align: center;
+        }
+
+        .stat-number {
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            margin-bottom: 8px;
+        }
+
+        /* Modal styles for displaying data images (with animation) */
+        .modal {
+            display: flex;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 220ms ease, visibility 220ms ease;
+        }
+
+        .modal[aria-hidden="false"] {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 1000px;
+            width: 100%;
+            max-height: 90vh;
+            background: #fff;
+            padding: 16px;
+            border-radius: 10px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: translateY(10px) scale(0.98);
+            transition: transform 220ms cubic-bezier(.2,.9,.2,1), opacity 220ms ease;
+            opacity: 0;
+        }
+
+        .modal[aria-hidden="false"] .modal-content {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 80vh;
+            display: block;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: transparent;
+            border: none;
+            color: #333;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -515,10 +678,10 @@
     <!-- Hero Section -->
     <div class="hero">
         <div class="container">
-            <h1>Smart Streets: Making Atlanta's Streets Safe for Everyone</h1>
+            <h1>Safe Streets: Making Atlanta's Streets Safe for Everyone</h1>
             <p>E-scooters and e-bikes promise sustainable mobility, but rising injuries and sidewalk conflicts threaten pedestrian safety. It's time for Smart Streets.</p>
             <div class="cta-buttons">
-                <a href="#solutions" class="cta-button cta-primary">See Our Plan</a>
+                <a href="#solutions" class="cta-button cta-secondary">See Our Plan</a>
                 <a href="#get-involved" class="cta-button cta-secondary">Get Involved</a>
             </div>
         </div>
@@ -528,57 +691,66 @@
     <section class="problem-section">
         <div class="container">
             <h2 class="section-title">The Problem We're Facing</h2>
-            <p class="section-subtitle">Micromobility is exploding in popularity, but safety hasn't kept pace. Atlanta's infrastructure and policies are struggling to protect riders and pedestrians alike.</p>
+            <p class="section-subtitle">Micromobility is exploding in popularity, but <strong style="color: #e74c3c;">safety hasn't kept pace</strong>. Atlanta's infrastructure and policies are struggling to protect riders and pedestrians alike.</p>
             
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-number">373</div>
-                    <div class="stat-label">Deaths from micromobility devices (2017-2022)</div>
+                    <div class="stat-content">
+                        <div class="stat-number">373</div>
+                        <div class="stat-label"><strong style="color: #e74c3c;">Deaths</strong> from micromobility devices (2017-2022) in the U.S.</div>
+                    </div>
+                    <button class="view-data-btn" data-image="assets/fatality_data.png">View the Data</button>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">209K</div>
-                    <div class="stat-label">Emergency department visits (2017-2023)</div>
+                    <div class="stat-content">
+                        <div class="stat-number">209,600</div>
+                        <div class="stat-label"><strong style="color: #e74c3c;">Emergency department</strong> visits (2017-2023) in the U.S.</div>
+                    </div>
+                    <button class="view-data-btn" data-image="assets/ed_data.png">View the Data</button>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">130M</div>
-                    <div class="stat-label">E-scooter trips in 2023 alone</div>
+                    <div class="stat-content">
+                        <div class="stat-number">10</div>
+                        <div class="stat-label"><strong style="color: #e74c3c;">Deaths</strong> in Atlanta</div>
+                    </div>
+                    <button class="view-data-btn" data-image="assets/atl_death_data.png">View the Data</button>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">30%</div>
-                    <div class="stat-label">Increase in usage from previous year</div>
+                    <div class="stat-content">
+                        <div class="stat-number">80-100</div>
+                        <div class="stat-label">E-scooter <strong style="color: #e74c3c;">injuries</strong> per month (Grady Hospital)</div>
+                    </div>
+                    <button class="view-data-btn" data-image="assets/atl_per_month_data.png">View the Data</button>
                 </div>
             </div>
 
             <p style="margin-top: 40px; text-align: center; font-size: 1.1em; max-width: 800px; margin-left: auto; margin-right: auto; color: #555;">
-                Research shows that sidewalk riding doubles injury risk, yet riders feel unsafe on roads without protected lanes. Meanwhile, scooters cluttering sidewalks create hazards for pedestrians, especially those with disabilities. Without proper infrastructure, education, and enforcement, these problems will only worsen.
+                Research shows that <strong style="color: #e74c3c;">sidewalk riding doubles injury risk</strong>, yet riders feel <strong style="color: #e74c3c;">unsafe on roads</strong> without protected lanes. Meanwhile, <strong style="color: #e74c3c;">scooters cluttering</strong> sidewalks create hazards for pedestrians, especially those with disabilities. Without proper infrastructure, education, and enforcement, these problems will <strong style="color: #e74c3c;">only worsen</strong>.
             </p>
         </div>
     </section>
 
-    <!-- Poster Section -->
-    <section class="poster-section">
+    <!-- Data modal (hidden until a 'View the Data' button is clicked) -->
+    <div id="dataModal" class="modal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-modal="true">
+            <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+            <img src="" alt="Data visualization" id="modalImage" class="modal-image">
+        </div>
+    </div>
+
+    <!-- The Problem in Pictures -->
+    <section class="problem-pictures">
         <div class="container">
-            <h2 class="section-title">Our Campaign</h2>
-            <p class="section-subtitle">Mind the Micromobility - Equity on the Roads at All Costs</p>
-            <div class="poster-container">
-                <div class="poster-controls">
-                    <button class="control-btn" id="zoomIn">🔍 Zoom In</button>
-                    <button class="control-btn" id="zoomOut">🔍 Zoom Out</button>
-                    <button class="control-btn" id="resetZoom">↺ Reset</button>
-                    <button class="control-btn" id="fullscreen">⛶ Fullscreen</button>
-                </div>
-                <div class="poster-viewer" id="posterViewer">
-                    <div class="poster-wrapper" id="posterWrapper">
-                        <img src="revised-poster-lmc.png" alt="Mind the Micromobility Poster" id="posterImage">
-                    </div>
-                </div>
-                <p style="margin-top: 15px; color: #666; font-size: 0.95em;">
-                    💡 Click and drag to pan • Use controls to zoom • Double-click for fullscreen
-                </p>
+            <h2 class="section-title">The Problem in Pictures</h2>
+            <p class="section-subtitle">Pictures taken in Atlanta illustrating <strong style="color: #e74c3c;">improper parking</strong> of micromobility devices, which can be <strong style="color: #e74c3c;">dangerous</strong> for pedestrians and other users of the road. The first image was taken on <strong style="color: #e74c3c;">Ponce de Leon Avenue</strong>, while the last was taken on <strong style="color: #e74c3c;">Georgia Tech's campus</strong>.</p>
+
+            <div class="problem-gallery">
+                <img src="assets/problem1.png" alt="Problem image 1">
+                <img src="assets/problem2.png" alt="Problem image 2">
+                <img src="assets/problem3.png" alt="Problem image 3">
             </div>
         </div>
     </section>
-
     <!-- Solutions Section -->
     <section id="solutions">
         <div class="container">
@@ -632,6 +804,30 @@
         </div>
     </section>
 
+    <!-- Poster Section -->
+    <section class="poster-section">
+        <div class="container">
+            <h2 class="section-title">Our Campaign</h2>
+            <p class="section-subtitle">Mind the Micromobility - Equity on the Roads at All Costs</p>
+            <div class="poster-container">
+                <div class="poster-controls">
+                    <button class="control-btn" id="zoomIn">🔍 Zoom In</button>
+                    <button class="control-btn" id="zoomOut">🔍 Zoom Out</button>
+                    <button class="control-btn" id="resetZoom">↺ Reset</button>
+                    <button class="control-btn" id="fullscreen">⛶ Fullscreen</button>
+                </div>
+                <div class="poster-viewer" id="posterViewer">
+                    <div class="poster-wrapper" id="posterWrapper">
+                        <img src="assets/poster.png" alt="Mind the Micromobility Poster" id="posterImage">
+                    </div>
+                </div>
+                <p style="margin-top: 15px; color: #666; font-size: 0.95em;">
+                    💡 Click and drag to pan • Use controls to zoom • Double-click for fullscreen
+                </p>
+            </div>
+        </div>
+    </section>
+
     <!-- Get Involved Section -->
     <section id="get-involved" class="get-involved">
         <div class="container">
@@ -677,5 +873,45 @@
             </p>
         </div>
     </footer>
+    <script>
+        (function() {
+            const modal = document.getElementById('dataModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalClose = document.getElementById('modalClose');
+
+            function openDataModal(src, alt) {
+                modalImage.src = src;
+                modalImage.alt = alt || 'Data visualization';
+                modal.setAttribute('aria-hidden', 'false');
+            }
+
+            function closeDataModal() {
+                modal.setAttribute('aria-hidden', 'true');
+                // wait for the close animation to finish before clearing the image
+                setTimeout(function() {
+                    modalImage.src = '';
+                }, 300);
+            }
+
+            document.querySelectorAll('.view-data-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const img = btn.getAttribute('data-image');
+                    const labelEl = btn.closest('.stat-card') ? btn.closest('.stat-card').querySelector('.stat-label') : null;
+                    const alt = labelEl ? labelEl.innerText : '';
+                    openDataModal(img, alt);
+                });
+            });
+
+            if (modalClose) modalClose.addEventListener('click', closeDataModal);
+
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) closeDataModal();
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') closeDataModal();
+            });
+        })();
+    </script>
 </body>
 </html>
