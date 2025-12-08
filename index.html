@@ -334,6 +334,15 @@
             transition: transform 0.3s;
         }
 
+        .solution-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 18px;
+            display: block;
+        }
+
         .solution-card:hover {
             transform: translateY(-5px);
         }
@@ -372,6 +381,89 @@
             left: 0;
             color: #27ae60;
             font-weight: bold;
+        }
+
+        /* Budget line styling for solution cards (higher specificity so it overrides .solution-card p) */
+        .solution-card .solution-budget {
+            margin-top: 20px;
+            font-weight: 600;
+            color: #27ae60; /* green */
+        }
+
+        /* Timeline section styles - vertical timeline */
+        .timeline-section {
+            background: #ffffff;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            position: relative;
+        }
+
+        /* Vertical line down the timeline */
+        .timeline-section::before {
+            content: '';
+            position: absolute;
+            left: 48px;
+            top: 28px;
+            bottom: 28px;
+            width: 4px;
+            background: linear-gradient(180deg, #e6eefc 0%, #c7ddff 100%);
+            border-radius: 2px;
+            box-shadow: 0 2px 6px rgba(102,126,234,0.08);
+        }
+
+        .timeline-grid {
+            display: block;
+            margin-top: 20px;
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        .phase-card {
+            position: relative;
+            background: #f7f9fc;
+            border-radius: 12px;
+            padding: 18px 18px 18px 86px; /* leave space for the vertical line and marker */
+            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+            margin-bottom: 28px;
+            overflow: visible;
+        }
+
+        /* Marker dot aligned with vertical line */
+        .phase-card::before {
+            content: '';
+            position: absolute;
+            left: 28px;
+            top: 22px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 12px rgba(102,126,234,0.25);
+        }
+
+        .phase-card h4 {
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+
+        .phase-card p,
+        .phase-card li {
+            color: #444;
+            line-height: 1.45;
+            font-size: 0.98em;
+        }
+
+        .phase-list {
+            margin-top: 10px;
+            padding-left: 18px;
+        }
+
+        /* Responsive: when narrow, move the vertical line left and make cards full width */
+        @media (max-width: 720px) {
+            .timeline-section::before { left: 24px; }
+            .phase-card { padding-left: 64px; }
+            .phase-card::before { left: 12px; }
         }
 
         .get-involved {
@@ -423,6 +515,33 @@
         .social-link:hover {
             transform: scale(1.05);
         }
+
+        /* Social buttons under Spread Awareness */
+        .social-buttons {
+            margin-top: 18px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 8px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95em;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+        }
+
+        .social-btn:hover { transform: translateY(-3px); opacity: 0.95; }
+
+        .social-btn.btn-x { background: #0f1419; }
+        .social-btn.btn-facebook { background: #1877F2; }
+        .social-btn.btn-linkedin { background: #0A66C2; }
+        .social-btn.btn-instagram { background: linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf); }
 
         footer {
             background: #2c3e50;
@@ -552,9 +671,167 @@
             font-size: 1.2em;
             cursor: pointer;
         }
+
+        /* Sign-up form styles */
+        .signup-section {
+            background: #f4f7ff;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        .signup-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(102,126,234,0.06);
+        }
+
+        .signup-section h2 {
+            text-align: left;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 1.8em;
+        }
+
+        .signup-section p.lead {
+            color: #444;
+            margin-bottom: 18px;
+        }
+
+        .signup-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 20px;
+            align-items: start;
+        }
+
+        .signup-form label { display: block; font-weight: 600; margin-bottom: 6px; }
+
+        .signup-form input[type="email"] {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #dfe7ff;
+            font-size: 1em;
+        }
+
+        .checkbox-group {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .checkbox-group label { font-weight: 500; color: #333; }
+        .checkbox-group label input[type="checkbox"] {
+            margin-right: 10px;
+            transform: translateY(1px);
+        }
+
+        .signup-actions {
+            grid-column: 1 / -1;
+            margin-top: 12px;
+            text-align: left;
+        }
+
+        .signup-btn {
+            padding: 12px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .signup-success {
+            display: none;
+            margin-top: 12px;
+            color: #155724;
+            background: #d4edda;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #c3e6cb;
+        }
+
+        @media (max-width: 720px) {
+            .signup-form { grid-template-columns: 1fr; }
+            .signup-section h2 { text-align: center; }
+            .signup-container { padding: 18px; }
+        }
+
+        /* Top navigation bar */
+        .top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1200;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .top-nav .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            color: #2c3e50;
+            text-decoration: none;
+            font-size: 1.05em;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .nav-link:hover {
+            background: rgba(102,126,234,0.08);
+            color: #1f2d6b;
+        }
+
+        @media (max-width: 720px) {
+            .nav-links { display: none; }
+        }
     </style>
 </head>
 <body>
+    <header class="top-nav" role="navigation" aria-label="Main navigation">
+        <div class="container nav-container">
+            <div class="nav-brand"><a class="nav-logo" href="#">Smart Streets</a></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a class="nav-link" href="#problem">The Problem</a></li>
+                    <li><a class="nav-link" href="#solutions">Our Solution</a></li>
+                    <li><a class="nav-link" href="#timeline">Roadmap</a></li>
+                    <li><a class="nav-link" href="#campaign">Our Campaign</a></li>
+                    <li><a class="nav-link" href="#get-involved">Get Involved</a></li>
+                    <li><a class="nav-link" href="#signup">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
     <script>
         // Interactive Poster Functionality
         document.addEventListener('DOMContentLoaded', function() {
@@ -688,7 +965,7 @@
     </div>
 
     <!-- Problem Section -->
-    <section class="problem-section">
+    <section id="problem" class="problem-section">
         <div class="container">
             <h2 class="section-title">The Problem We're Facing</h2>
             <p class="section-subtitle">Micromobility is exploding in popularity, but <strong style="color: #e74c3c;">safety hasn't kept pace</strong>. Atlanta's infrastructure and policies are struggling to protect riders and pedestrians alike.</p>
@@ -730,6 +1007,11 @@
         </div>
     </section>
 
+
+
+
+    
+
     <!-- Data modal (hidden until a 'View the Data' button is clicked) -->
     <div id="dataModal" class="modal" aria-hidden="true">
         <div class="modal-content" role="dialog" aria-modal="true">
@@ -759,7 +1041,7 @@
             
             <div class="solutions-grid">
                 <div class="solution-card">
-                    <div class="solution-icon">📍</div>
+                    <img class="solution-image" src="assets/geofencing.png" alt="Geofenced Safety Zones">
                     <h3>Geofenced Safety Zones</h3>
                     <p>Using GPS technology to automatically slow scooters in high-risk areas and establish no-ride zones around pedestrian hotspots.</p>
                     <ul class="solution-details">
@@ -768,11 +1050,11 @@
                         <li>Smart ordinances with escalating fines</li>
                         <li>Partnership with Lime, Bird, and APD</li>
                     </ul>
-                    <p style="margin-top: 20px; font-weight: 600;">Budget: $1,850,000 | Timeline: 6 months</p>
+                    <p class="solution-budget">Budget: $1,850,000</p>
                 </div>
 
                 <div class="solution-card">
-                    <div class="solution-icon">🛣️</div>
+                    <img class="solution-image" src="assets/bike_lanes.png" alt="Dedicated Infrastructure">
                     <h3>Dedicated Infrastructure</h3>
                     <p>Building the physical infrastructure Atlanta needs: protected lanes, designated parking corrals, and clear signage.</p>
                     <ul class="solution-details">
@@ -781,11 +1063,12 @@
                         <li>Enhanced signage at crossings and pedestrian zones</li>
                         <li>Focus on Midtown, Downtown, and BeltLine</li>
                     </ul>
-                    <p style="margin-top: 20px; font-weight: 600;">Budget: $2,600,000 | Timeline: 3-4 months</p>
+                    <button class="view-data-btn" data-image="assets/proposed_map.png">See our proposed infastructure map</button>
+                    <p class="solution-budget">Budget: $2,600,000</p>
                 </div>
 
                 <div class="solution-card">
-                    <div class="solution-icon">📚</div>
+                    <img class="solution-image" src="assets/safety_demo.jpg" alt="Share the Path Campaign">
                     <h3>"Share the Path" Campaign</h3>
                     <p>A comprehensive public education initiative to build awareness and accountability among all road users.</p>
                     <ul class="solution-details">
@@ -794,7 +1077,7 @@
                         <li>Pop-up safety demonstrations at hotspots</li>
                         <li>Behavioral surveys to measure impact</li>
                     </ul>
-                    <p style="margin-top: 20px; font-weight: 600;">Budget: $950,000 | Timeline: 4 months</p>
+                    <p class="solution-budget">Budget: $950,000</p>
                 </div>
             </div>
 
@@ -804,17 +1087,68 @@
         </div>
     </section>
 
+    <!-- Timeline Section -->
+    <section id="timeline" class="timeline-section">
+        <div class="container">
+            <h2 class="section-title">Smart Streets Initiative: Implementation Roadmap</h2>
+
+            <div class="timeline-grid">
+                <div class="phase-card">
+                    <h4>Phase 1: Foundation &amp; Legal Launch (Months 1–3)</h4>
+                    <ul class="phase-list">
+                        <li>Draft new unified micromobility ordinance; secure legislative support.</li>
+                        <li>Conduct baseline rider survey; establish data metrics.</li>
+                        <li>Finalize infrastructure locations; select high-priority corridors.</li>
+                        <li>Begin vendor negotiations for geofencing technology integration.</li>
+                    </ul>
+                </div>
+
+                <div class="phase-card">
+                    <h4>Phase 2: System &amp; Campaign Design (Months 4–6)</h4>
+                    <ul class="phase-list">
+                        <li>Fully integrate geofencing, speed caps, and violation tracking systems.</li>
+                        <li>Finalize construction plans for parking corrals and quick-build lanes.</li>
+                        <li>Produce all safety campaign materials for citywide distribution.</li>
+                        <li>Train police officers; establish citation processing infrastructure.</li>
+                    </ul>
+                </div>
+
+                <div class="phase-card">
+                    <h4>Phase 3: Major Launch &amp; Construction (Months 7–12)</h4>
+                    <ul class="phase-list">
+                        <li>New Micromobility Ordinance takes effect (Go-Live Date).</li>
+                        <li>Construct and install designated parking corrals and docking areas.</li>
+                        <li>Roll out quick-build protected micromobility lanes in pilot zones.</li>
+                        <li>Launch citywide safety campaign and deploy Ambassador teams.</li>
+                    </ul>
+                </div>
+
+                <div class="phase-card">
+                    <h4>Phase 4: Optimization &amp; Scaling (Months 13–18)</h4>
+                    <ul class="phase-list">
+                        <li>Initiate targeted, dedicated enforcement details in high-risk zones.</li>
+                        <li>Conduct follow-up survey; measure education campaign impact.</li>
+                        <li>Adjust geofence and enforcement based on performance data.</li>
+                        <li>Begin planning for lane and corral expansion into new corridors.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Poster Section -->
-    <section class="poster-section">
+    <section id="campaign" class="poster-section">
         <div class="container">
             <h2 class="section-title">Our Campaign</h2>
             <p class="section-subtitle">Mind the Micromobility - Equity on the Roads at All Costs</p>
+            <p><strong>Your voice is crucial to building safer streets.</strong> Please help us drive real change by <strong>downloading</strong> and <strong>sharing</strong> our poster on your social media channels, displaying it in your community spaces, and urging local officials to adopt the <strong>Smart Streets Initiative</strong>. See below for how to get involved.</p>
             <div class="poster-container">
-                <div class="poster-controls">
+                ><div class="poster-controls">
                     <button class="control-btn" id="zoomIn">🔍 Zoom In</button>
                     <button class="control-btn" id="zoomOut">🔍 Zoom Out</button>
                     <button class="control-btn" id="resetZoom">↺ Reset</button>
                     <button class="control-btn" id="fullscreen">⛶ Fullscreen</button>
+                    <a class="control-btn" id="downloadPoster" href="assets/poster.png" download>⬇️ Download Poster</a>
                 </div>
                 <div class="poster-viewer" id="posterViewer">
                     <div class="poster-wrapper" id="posterWrapper">
@@ -838,21 +1172,27 @@
                 <div class="action-card">
                     <h3>🗣️ Spread Awareness</h3>
                     <p>Share our campaign on social media and talk to friends about safe riding practices. Public support drives policy change.</p>
+                    <div class="social-buttons">
+                        <a class="social-btn btn-x" href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="Share on X">X</a>
+                        <a class="social-btn btn-facebook" href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">Facebook</a>
+                        <a class="social-btn btn-linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn">LinkedIn</a>
+                        <a class="social-btn btn-instagram" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Share on Instagram">Instagram</a>
+                    </div>
                 </div>
 
                 <div class="action-card">
                     <h3>✅ Follow Safety Rules</h3>
-                    <p>Ride in bike lanes, yield to pedestrians, park responsibly, and wear a helmet. Be part of the solution.</p>
+                    <p>Ride in bike lanes, yield to pedestrians, park responsibly, and wear a helmet. Be part of the solution. <a href="https://www.atlantapd.org/community/e-scooters-safety" target="_blank" rel="noopener noreferrer">See safety guide here.</a></p>
                 </div>
 
                 <div class="action-card">
                     <h3>📢 Report Issues</h3>
-                    <p>Contact Atlanta Police and transportation officials when you see dangerous riding or improperly parked scooters.</p>
+                    <p>Contact Atlanta Police and transportation officials when you see dangerous riding or improperly parked scooters. Report code or parking issues using the City of Atlanta service request portal: <a href="https://www.atl311.com/" target="_blank" rel="noopener noreferrer">atl311.com</a>. For urgent non-emergencies, please call <strong>311</strong> directly.</p>
                 </div>
 
                 <div class="action-card">
                     <h3>📝 Support Legislation</h3>
-                    <p>Contact Atlanta Department of Transportation and your city council representatives to support Smart Streets initiatives.</p>
+                    <p>Contact the Atlanta Department of Transportation: <a href="https://atldot.atlantaga.gov/contact" target="_blank" rel="noopener noreferrer">Contact ATLDOT</a>, and find your city council representatives here: <a href="https://citycouncil.atlantaga.gov/council-members" target="_blank" rel="noopener noreferrer">City Council members</a>. Reach out to ask your council member to support Smart Streets initiatives.</p>
                 </div>
             </div>
 
@@ -862,11 +1202,41 @@
         </div>
     </section>
 
+    <!-- Sign-up Section -->
+    <section id="signup" class="signup-section">
+        <div class="container signup-container">
+            <h2>Join the Movement: Sign Up Now</h2>
+            <p class="lead"><strong>Every day</strong> of delay increases the risk of preventable injuries. Our window for passing the Smart Streets Initiative is <strong>open now</strong>. <strong>Sign up</strong> to help us change the culture of mobility and <strong>save lives</strong> on Atlanta’s streets.</p>
+
+            <form id="signupForm" class="signup-form" action="#" method="post">
+                <div>
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                </div>
+
+                <div>
+                    <!-- empty cell to keep two-column layout for email -->
+                </div>
+
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="help[]" value="events">  Event Notifications/Safety Alerts</label>
+                    <label><input type="checkbox" name="help[]" value="ambassador">  Join the Micromobility Ambassador Team</label>
+                    <label><input type="checkbox" name="help[]" value="newsletters">  Receive Policy Update Newsletters</label>
+                </div>
+
+                <div class="signup-actions">
+                    <button type="submit" class="signup-btn">Sign Me Up to Make Streets Safer</button>
+                    <div id="signupSuccess" class="signup-success" role="status">Thank you — you've been added to our list. We'll be in touch.</div>
+                </div>
+            </form>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
             <p><strong>Smart Streets Initiative</strong></p>
-            <p>A project by Jerry Song, Vikas Malepati, and Knox Kim</p>
+            <p>A project by Jerry Song, Vikas Malepati</p>
             <p>Georgia Institute of Technology | October 2025</p>
             <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.8;">
                 Proposal submitted to Atlanta Department of Transportation
@@ -910,6 +1280,33 @@
 
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') closeDataModal();
+            });
+        })();
+    </script>
+    <script>
+        // Sign-up form handling (client-side only)
+        (function() {
+            const form = document.getElementById('signupForm');
+            const success = document.getElementById('signupSuccess');
+
+            function validEmail(email) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            }
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = form.email.value.trim();
+                if (!validEmail(email)) {
+                    alert('Please enter a valid email address.');
+                    form.email.focus();
+                    return;
+                }
+
+                // Simulate successful submission (no backend)
+                success.style.display = 'block';
+                form.reset();
+
+                // Optionally, add logic here to POST to a real endpoint.
             });
         })();
     </script>
